@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Heading } from "@ignite-ui/react";
 
 export default function Home() {
   return (
@@ -7,7 +8,7 @@ export default function Home() {
         <title>Ignite Call</title>
       </Head>
       <main>
-        <h1> Ignite Call </h1>
+        <Heading> Ignite Call </Heading>
       </main>
     </>
   );
