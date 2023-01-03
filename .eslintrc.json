@@ -1,3 +1,21 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "@rocketseat/eslint-config/react"],
+  "rules": {
+    "import/no-anonymous-default-export": [
+      "error",
+      {
+        "allowArrowFunction": true
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": false,
+        "arrowParens": "always",
+        "semi": true,
+        "endOfLine": "auto",
+        "trailingComma": "none"
+      }
+    ]
+  }
 }
