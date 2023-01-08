@@ -9,6 +9,8 @@ import { ArrowRight } from "phosphor-react";
 
 import { Container, Form, FormError, Header } from "./styles";
 
+import { api } from "../../lib/axios";
+
 const registerFormSchema = z.object({
   username: z
     .string()
@@ -44,7 +46,14 @@ export default function Register() {
   const router = useRouter();
 
   async function handleRegister(data: RegisterFormData) {
-    console.log(data);
+    try {
+      await api.post("/users", {
+        name: data.name,
+        username: data.username
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   useEffect(() => {
