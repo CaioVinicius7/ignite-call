@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Text, TextInput } from "@ignite-ui/react";
@@ -24,15 +25,19 @@ export function ClaimUsernameForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors, isSubmitting }
   } = useForm<ClaimUsernameFormData>({
     resolver: zodResolver(claimUsernameFormSchema)
   });
 
+  const router = useRouter();
+
   const hasValidationErrors = !!errors.username;
 
   async function handleClaimUsername(data: ClaimUsernameFormData) {
-    console.log(data);
+    const { username } = data;
+
+    await router.push(`/register?username=${username}`);
   }
 
   return (
@@ -46,7 +51,7 @@ export function ClaimUsernameForm() {
           {...register("username")}
         />
 
-        <Button size="sm" type="submit">
+        <Button size="sm" type="submit" disabled={isSubmitting}>
           Reservar
           <ArrowRight />
         </Button>
