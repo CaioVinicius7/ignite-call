@@ -31,8 +31,6 @@ export function ClaimUsernameForm() {
 
   const hasValidationErrors = !!errors.username;
 
-  console.log(hasValidationErrors);
-
   async function handleClaimUsername(data: ClaimUsernameFormData) {
     console.log(data);
   }
