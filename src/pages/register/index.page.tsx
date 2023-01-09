@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { AxiosError } from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { z } from "zod";
@@ -52,6 +53,10 @@ export default function Register() {
         username: data.username
       });
     } catch (err) {
+      if (err instanceof AxiosError && err?.response?.data?.message) {
+        return alert(err.response.data.message);
+      }
+
       console.log(err);
     }
   }
