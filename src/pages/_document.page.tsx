@@ -12,6 +12,9 @@ export default function Document() {
           crossOrigin="anonymous"
         />
 
+        <meta name="description" content="Ignite Call" />
+
+        <link rel="icon" href="/favicon.ico" />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
           rel="stylesheet"
