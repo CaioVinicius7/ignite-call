@@ -24,7 +24,8 @@ export const authOptions: NextAuthOptions = {
 
       return true;
     }
-  }
+  },
+  secret: process.env.NEXT_AUTH_SECRET
 };
 
 export default NextAuth(authOptions);
