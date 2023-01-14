@@ -97,7 +97,21 @@ export function PrismaAdapter(): Adapter {
         }
       });
     },
-    async createSession({ sessionToken, userId, expires }) {},
+    async createSession({ sessionToken, userId, expires }) {
+      await prisma.session.create({
+        data: {
+          user_id: userId,
+          session_token: sessionToken,
+          expires
+        }
+      });
+
+      return {
+        userId,
+        sessionToken,
+        expires
+      };
+    },
     async getSessionAndUser(sessionToken) {},
     async updateSession({ sessionToken }) {},
     async deleteSession(sessionToken) {},
