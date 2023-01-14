@@ -20,7 +20,22 @@ export function PrismaAdapter(): Adapter {
         avatar_url: user.avatar_url!
       };
     },
-    async getUserByEmail(email) {},
+    async getUserByEmail(email) {
+      const user = await prisma.user.findUniqueOrThrow({
+        where: {
+          email
+        }
+      });
+
+      return {
+        id: user.id,
+        name: user.name,
+        username: user.username,
+        email: user.email!,
+        emailVerified: null,
+        avatar_url: user.avatar_url!
+      };
+    },
     async getUserByAccount({ providerAccountId, provider }) {},
     async updateUser(user) {},
     async deleteUser(userId) {},
