@@ -21,7 +21,6 @@ export function PrismaAdapter(
           id: userIdOnCookies
         },
         data: {
-          name: user.name,
           email: user.email,
           avatar_url: user.avatar_url
         }
