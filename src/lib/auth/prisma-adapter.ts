@@ -155,7 +155,12 @@ export function PrismaAdapter(): Adapter {
         expires: prismaSession.expires
       };
     },
-    async createVerificationToken({ identifier, expires, token }) {},
-    async useVerificationToken({ identifier, token }) {}
+    async deleteSession(sessionToken) {
+      await prisma.session.delete({
+        where: {
+          session_token: sessionToken
+        }
+      });
+    }
   };
 }
