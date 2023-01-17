@@ -40,6 +40,12 @@ export function buildNextAuthOptions(
         }
 
         return true;
+      },
+      async session({ session, user }) {
+        return {
+          ...session,
+          user
+        };
       }
     },
     secret: process.env.NEXT_AUTH_SECRET
