@@ -27,7 +27,7 @@ const registerFormSchema = z.object({
     .min(3, {
       message: "O nome precisa ter pelo menos 3 letras."
     })
-    .regex(/^([a-z]+)$/i, {
+    .regex(/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/, {
       message: "O nome pode ter apenas letras."
     })
 });
