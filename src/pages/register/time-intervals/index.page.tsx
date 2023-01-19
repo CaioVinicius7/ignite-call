@@ -22,7 +22,7 @@ import { Container, Header } from "../styles";
 import { getWeekDays } from "../../../utils/get-week-days";
 
 export default function TimeIntervals() {
-  const { control, register, handleSubmit } = useForm({
+  const { control, register, watch, handleSubmit } = useForm({
     defaultValues: {
       intervals: [
         {
@@ -70,6 +70,8 @@ export default function TimeIntervals() {
       ]
     }
   });
+
+  const intervals = watch("intervals");
 
   const weekDays = getWeekDays();
 
@@ -122,12 +124,14 @@ export default function TimeIntervals() {
                     size="sm"
                     type="time"
                     step={60}
+                    disabled={intervals[index].enable === false}
                     {...register(`intervals.${index}.startTime`)}
                   />
                   <TextInput
                     size="sm"
                     type="time"
                     step={60}
+                    disabled={intervals[index].enable === false}
                     {...register(`intervals.${index}.endTime`)}
                   />
                 </IntervalInputs>
