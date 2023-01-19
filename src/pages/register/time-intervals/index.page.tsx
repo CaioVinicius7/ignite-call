@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useFieldArray, useForm, Controller } from "react-hook-form";
 import {
   Button,
   Checkbox,
@@ -18,6 +18,7 @@ import {
   IntervalsContainer
 } from "./styles";
 import { Container, Header } from "../styles";
+
 import { getWeekDays } from "../../../utils/get-week-days";
 
 export default function TimeIntervals() {
@@ -62,7 +63,7 @@ export default function TimeIntervals() {
         },
         {
           weekDay: 6,
-          enable: true,
+          enable: false,
           startTime: "09:00",
           endTime: "18:00"
         }
@@ -100,7 +101,19 @@ export default function TimeIntervals() {
             {fields.map((field, index) => (
               <IntervalItem key={field.id}>
                 <IntervalDay>
-                  <Checkbox />
+                  <Controller
+                    name={`intervals.${index}.enable`}
+                    control={control}
+                    render={({ field }) => (
+                      <Checkbox
+                        onCheckedChange={(checked) => {
+                          field.onChange(checked === true);
+                        }}
+                        checked={field.value}
+                      />
+                    )}
+                  />
+
                   <Text>{weekDays[field.weekDay]}</Text>
                 </IntervalDay>
 
