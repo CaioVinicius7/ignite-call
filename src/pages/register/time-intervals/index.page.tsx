@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useFieldArray, useForm, Controller } from "react-hook-form";
+import { z } from "zod";
 import {
   Button,
   Checkbox,
@@ -20,6 +21,21 @@ import {
 import { Container, Header } from "../styles";
 
 import { getWeekDays } from "../../../utils/get-week-days";
+
+const timeIntervalsFormSchema = z.object({
+  intervals: z
+    .array(
+      z.object({
+        weekDay: z.number().min(0).max(6),
+        enable: z.boolean(),
+        startTime: z.string(),
+        endTime: z.string()
+      })
+    )
+    .length(7)
+});
+
+type TimeIntervalsFormData = z.infer<typeof timeIntervalsFormSchema>;
 
 export default function TimeIntervals() {
   const { control, register, watch, handleSubmit } = useForm({
@@ -80,7 +96,9 @@ export default function TimeIntervals() {
     name: "intervals"
   });
 
-  function handleSetTimeIntervals(data: any) {}
+  function handleSetTimeIntervals(data: TimeIntervalsFormData) {
+    console.log(data);
+  }
 
   return (
     <>
