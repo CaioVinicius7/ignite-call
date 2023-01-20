@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useFieldArray, useForm, Controller } from "react-hook-form";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Button,
   Checkbox,
@@ -12,6 +13,7 @@ import {
 import { ArrowRight } from "phosphor-react";
 
 import {
+  FormError,
   IntervalBox,
   IntervalDay,
   IntervalInputs,
@@ -33,12 +35,23 @@ const timeIntervalsFormSchema = z.object({
       })
     )
     .length(7)
+    .transform((intervals) => intervals.filter((intervals) => intervals.enable))
+    .refine((intervals) => intervals.length, {
+      message: "Você precisa selecionar pelo menos um dia da semana!"
+    })
 });
 
 type TimeIntervalsFormData = z.infer<typeof timeIntervalsFormSchema>;
 
 export default function TimeIntervals() {
-  const { control, register, watch, handleSubmit } = useForm({
+  const {
+    control,
+    register,
+    watch,
+    handleSubmit,
+    formState: { isSubmitting, errors }
+  } = useForm({
+    resolver: zodResolver(timeIntervalsFormSchema),
     defaultValues: {
       intervals: [
         {
@@ -157,7 +170,11 @@ export default function TimeIntervals() {
             ))}
           </IntervalsContainer>
 
-          <Button type="submit">
+          {errors.intervals && (
+            <FormError size="sm">{errors.intervals.message}</FormError>
+          )}
+
+          <Button type="submit" disabled={isSubmitting}>
             Próximo passo <ArrowRight />
           </Button>
         </IntervalBox>
