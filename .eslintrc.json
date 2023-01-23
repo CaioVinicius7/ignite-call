@@ -16,6 +16,7 @@
         "endOfLine": "auto",
         "trailingComma": "none"
       }
-    ]
+    ],
+    "camelcase": "off"
   }
 }
