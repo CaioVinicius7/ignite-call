@@ -22,6 +22,8 @@ import {
 } from "./styles";
 import { Container, Header } from "../styles";
 
+import { api } from "../../../lib/axios";
+
 import { getWeekDays } from "../../../utils/get-week-days";
 import { convertTimeStringInMinutes } from "../../../utils/convert-time-string-in-minutes";
 
@@ -132,10 +134,10 @@ export default function TimeIntervals() {
     name: "intervals"
   });
 
-  function handleSetTimeIntervals(data: any) {
-    const formData = data as TimeIntervalsFormOutput;
+  async function handleSetTimeIntervals(data: any) {
+    const { intervals } = data as TimeIntervalsFormOutput;
 
-    console.log(formData);
+    await api.post("/users/time-intervals", intervals);
   }
 
   return (
