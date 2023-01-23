@@ -49,6 +49,18 @@ const timeIntervalsFormSchema = z.object({
         };
       });
     })
+    .refine(
+      (intervals) => {
+        return intervals.every(
+          (interval) =>
+            interval.endTimeInMinutes - 60 >= interval.startTimeInMinutes
+        );
+      },
+      {
+        message:
+          "O horário de término deve ser pelo menos 1h distante do início."
+      }
+    )
 });
 
 type TimeIntervalsFormData = z.infer<typeof timeIntervalsFormSchema>;
