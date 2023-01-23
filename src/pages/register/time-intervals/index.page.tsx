@@ -23,6 +23,7 @@ import {
 import { Container, Header } from "../styles";
 
 import { getWeekDays } from "../../../utils/get-week-days";
+import { convertTimeStringInMinutes } from "../../../utils/convert-time-string-in-minutes";
 
 const timeIntervalsFormSchema = z.object({
   intervals: z
@@ -38,6 +39,15 @@ const timeIntervalsFormSchema = z.object({
     .transform((intervals) => intervals.filter((intervals) => intervals.enable))
     .refine((intervals) => intervals.length, {
       message: "Você precisa selecionar pelo menos um dia da semana!"
+    })
+    .transform((intervals) => {
+      return intervals.map((interval) => {
+        return {
+          weekDay: interval.weekDay,
+          startTimeInMinutes: convertTimeStringInMinutes(interval.startTime),
+          endTimeInMinutes: convertTimeStringInMinutes(interval.endTime)
+        };
+      });
     })
 });
 
