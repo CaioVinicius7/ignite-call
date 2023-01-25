@@ -5,7 +5,14 @@ import { unstable_getServerSession } from "next-auth";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Heading, MultiStep, Text, TextArea } from "@ignite-ui/react";
+import {
+  Avatar,
+  Button,
+  Heading,
+  MultiStep,
+  Text,
+  TextArea
+} from "@ignite-ui/react";
 import { ArrowRight } from "phosphor-react";
 
 import { FormAnnotation, ProfileBox } from "./styles";
@@ -32,8 +39,6 @@ export default function UpdateProfile() {
 
   async function handleUpdateProfile(data: UpdateProfileData) {}
 
-  console.log(session);
-
   return (
     <>
       <Head>
@@ -53,6 +58,7 @@ export default function UpdateProfile() {
         <ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
           <label>
             <Text size="sm">Foto de perfil</Text>
+            <Avatar src={session.data?.user.avatar_url} />
           </label>
 
           <label>
