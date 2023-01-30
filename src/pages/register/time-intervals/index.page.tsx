@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useFieldArray, useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -125,7 +126,7 @@ export default function TimeIntervals() {
     }
   });
 
-  const intervals = watch("intervals");
+  const router = useRouter();
 
   const weekDays = getWeekDays();
 
@@ -134,10 +135,14 @@ export default function TimeIntervals() {
     name: "intervals"
   });
 
+  const intervals = watch("intervals");
+
   async function handleSetTimeIntervals(data: any) {
     const { intervals } = data as TimeIntervalsFormOutput;
 
     await api.post("/users/time-intervals", { intervals });
+
+    await router.push("/register/update-profile");
   }
 
   return (
