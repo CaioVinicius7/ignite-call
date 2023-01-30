@@ -20,6 +20,8 @@ import { Container, Header } from "../styles";
 
 import { buildNextAuthOptions } from "../../api/auth/[...nextauth].api";
 
+import { api } from "../../../lib/axios";
+
 const updateProfileSchema = z.object({
   bio: z.string()
 });
@@ -37,7 +39,11 @@ export default function UpdateProfile() {
 
   const session = useSession();
 
-  async function handleUpdateProfile(data: UpdateProfileData) {}
+  async function handleUpdateProfile(data: UpdateProfileData) {
+    await api.put("/users/profile", {
+      bio: data.bio
+    });
+  }
 
   return (
     <>
