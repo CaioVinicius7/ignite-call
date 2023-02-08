@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { Avatar, Heading, Text } from "@ignite-ui/react";
 
-import { ScheduleForm } from "../ScheduleForm";
+import { ScheduleForm } from "./ScheduleForm";
 
 import { Container, UserHeader } from "./styles";
 
