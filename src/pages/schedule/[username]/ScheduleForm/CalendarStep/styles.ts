@@ -26,13 +26,37 @@ export const Container = styled(Box, {
 export const TimePicker = styled("div", {
   borderLeft: "1px solid $gray600",
   padding: "$6 $6 0",
-  overflowY: "scroll",
+  overflowY: "auto",
+
+  "&::-webkit-scrollbar": {
+    width: "10px"
+  },
+
+  "&::-webkit-scrollbar-track": {
+    background: "#29292e"
+  },
+
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor: "$gray600",
+    borderRadius: "$sm"
+  },
 
   position: "absolute",
   right: 0,
   top: 0,
   bottom: 0,
-  width: 280
+  width: 280,
+
+  "@media(max-width: 900px)": {
+    position: "unset",
+    width: "auto",
+
+    padding: "$6 0 0",
+
+    borderLeft: 0,
+    borderTop: "1px solid $gray600",
+    overflowY: "hidden"
+  }
 });
 
 export const TimePickerHeader = styled(Text, {
@@ -40,6 +64,10 @@ export const TimePickerHeader = styled(Text, {
 
   span: {
     color: "$gray200"
+  },
+
+  "@media(max-width: 900px)": {
+    paddingLeft: "$6"
   }
 });
 
@@ -50,7 +78,23 @@ export const TimePickerList = styled("div", {
   gap: "$2",
 
   "@media(max-width: 900px)": {
-    gridTemplateColumns: "2fr"
+    display: "flex",
+    overflowX: "auto",
+    paddingLeft: "$6",
+    paddingRight: "$16",
+
+    "&::-webkit-scrollbar": {
+      width: "10px"
+    },
+
+    "&::-webkit-scrollbar-track": {
+      background: "#29292e"
+    },
+
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "$gray600",
+      borderRadius: "$sm"
+    }
   }
 });
 
@@ -76,5 +120,14 @@ export const TimePickerItem = styled("button", {
 
   "&:focus": {
     boxShadow: "0 0 0 1.5 $colors$gray500"
+  },
+
+  "@media(max-width: 900px)": {
+    marginBottom: "$4",
+    padding: "$2 $4",
+
+    "&:last-child": {
+      marginBottom: "$4"
+    }
   }
 });
