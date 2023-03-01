@@ -30,7 +30,7 @@ export function CalendarStep() {
   const isDateSelected = !!selectedDate;
 
   const weekDay = selectedDate ? dayjs(selectedDate).format("dddd") : null;
-  const describeDate = selectedDate
+  const describedDate = selectedDate
     ? dayjs(selectedDate).format("DD [de] MMMM")
     : null;
 
@@ -61,7 +61,7 @@ export function CalendarStep() {
       {isDateSelected && (
         <TimePicker>
           <TimePickerHeader>
-            {weekDay} <span>{describeDate}</span>
+            {weekDay} <span>{describedDate}</span>
           </TimePickerHeader>
 
           <TimePickerList>
