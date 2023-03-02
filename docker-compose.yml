@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  database:
+    image: mysql
+    container_name: ignite-call-mysql
+    restart: always
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_DATABASE=ignitecall
+      - MYSQL_ROOT_PASSWORD=docker
+    volumes:
+      - mysqldata:/var/lib/mysql
+
+volumes:
+  mysqldata:
+    driver: local
