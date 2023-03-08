@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { Avatar, Heading, Text } from "@ignite-ui/react";
 
@@ -16,17 +17,24 @@ interface ScheduleProps {
 }
 
 export default function Schedule({ user }: ScheduleProps) {
+  const userFirstName = user.name.split(" ").at(0);
+
   return (
-    <Container>
-      <UserHeader>
-        <Avatar src={user.avatarUrl} alt="" />
+    <>
+      <Head>
+        <title> Ignite Call | {userFirstName} </title>
+      </Head>
+      <Container>
+        <UserHeader>
+          <Avatar src={user.avatarUrl} alt="" />
 
-        <Heading>{user.name}</Heading>
-        <Text>{user.bio}</Text>
-      </UserHeader>
+          <Heading>{user.name}</Heading>
+          <Text>{user.bio}</Text>
+        </UserHeader>
 
-      <ScheduleForm />
-    </Container>
+        <ScheduleForm />
+      </Container>
+    </>
   );
 }
 
