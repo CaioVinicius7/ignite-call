@@ -46,7 +46,7 @@ export default async function handle(
     );
   });
 
-  const blockedDatesRaw = await prisma.$queryRaw`
+  const blockedDatesRaw: Array<{ date: number }> = await prisma.$queryRaw`
     SELECT
       EXTRACT(DAY FROM S.DATE) AS date,
       COUNT(S.date) AS amount,
@@ -65,7 +65,7 @@ export default async function handle(
     HAVING amount >= size
   `;
 
-  console.log(blockedDatesRaw);
+  const blockedDates = blockedDatesRaw.map((item) => item.date);
 
-  return res.json({ blockedWeekDays });
+  return res.json({ blockedWeekDays, blockedDates });
 }
