@@ -11,9 +11,9 @@ import {
   TimePickerList
 } from "./styles";
 
-import { Calendar } from "../../../../../components/Calendar";
+import { Calendar } from "../../../../../../components/Calendar";
 
-import { api } from "../../../../../lib/axios";
+import { api } from "../../../../../../lib/axios";
 
 interface Availability {
   possibleTimes: number[];
