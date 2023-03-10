@@ -1,11 +1,14 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarBlank, Clock } from "phosphor-react";
 import { Button, Text, TextArea, TextInput } from "@ignite-ui/react";
 import dayjs from "dayjs";
 
 import { ConfirmForm, FormActions, FormError, FormHeader } from "./styles";
+
+import { api } from "../../../../../../lib/axios";
 
 const confirmFormSchema = z.object({
   name: z.string().min(3, "O nome precisa de no mínimo 3 caracteres."),
@@ -32,8 +35,21 @@ export function ConfirmStep({
     resolver: zodResolver(confirmFormSchema)
   });
 
-  function handleConfirmScheduling(data: ConfirmFormData) {
-    console.log(data);
+  const router = useRouter();
+
+  const username = String(router.query.username);
+
+  async function handleConfirmScheduling(data: ConfirmFormData) {
+    const { name, email, observations } = data;
+
+    await api.post(`/users/${username}/schedule`, {
+      name,
+      email,
+      observations,
+      date: schedulingDate
+    });
+
+    onCancelConfirmation();
   }
 
   const describeDate = dayjs(schedulingDate).format("DD [de] MMMM [de] YYYY");
