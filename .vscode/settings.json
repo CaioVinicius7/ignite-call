@@ -3,6 +3,7 @@
     "ÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ",
     "antialised",
     "camelcase",
+    "datetime",
     "dayjs",
     "esnext",
     "hookform",
