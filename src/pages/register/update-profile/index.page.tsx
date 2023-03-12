@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import Head from "next/head";
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { unstable_getServerSession } from "next-auth";
@@ -51,9 +51,8 @@ export default function UpdateProfile() {
 
   return (
     <>
-      <Head>
-        <title> Ignite Call | Registro </title>
-      </Head>
+      <NextSeo title="Atualize seu perfil | Ignite Call" noindex />
+
       <Container>
         <Header>
           <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>

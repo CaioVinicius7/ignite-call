@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { AxiosError } from "axios";
-import Head from "next/head";
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -71,9 +71,8 @@ export default function Register() {
 
   return (
     <>
-      <Head>
-        <title> Ignite Call | Registro </title>
-      </Head>
+      <NextSeo title="Crie uma conta | Ignite Call" />
+
       <Container>
         <Header>
           <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>

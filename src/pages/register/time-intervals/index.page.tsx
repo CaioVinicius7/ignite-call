@@ -1,4 +1,4 @@
-import Head from "next/head";
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useFieldArray, useForm, Controller } from "react-hook-form";
 import { z } from "zod";
@@ -147,9 +147,8 @@ export default function TimeIntervals() {
 
   return (
     <>
-      <Head>
-        <title> Ignite Call | Registro </title>
-      </Head>
+      <NextSeo title="Selecione sua disponibilidade | Ignite Call" noindex />
+
       <Container>
         <Header>
           <Heading as="strong">Quase lá</Heading>

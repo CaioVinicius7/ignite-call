@@ -12,7 +12,10 @@ export default function Document() {
           crossOrigin="anonymous"
         />
 
-        <meta name="description" content="Ignite Call" />
+        <meta
+          name="description"
+          content="Conecte seu calendário e permita que as pessoas marquem agendamentos no seu tempo livre."
+        />
 
         <link rel="icon" href="/favicon.ico" />
         <link
