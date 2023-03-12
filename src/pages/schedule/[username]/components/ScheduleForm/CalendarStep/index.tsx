@@ -17,7 +17,7 @@ import { api } from "../../../../../../lib/axios";
 
 interface Availability {
   possibleTimes: number[];
-  availableTimes: number[];
+  unavailableTimes: number[];
 }
 
 interface CalendarStepProps {
@@ -58,6 +58,12 @@ export function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
     }
   );
 
+  const unavailableTimes = availability?.unavailableTimes.map(
+    (availableTime) => {
+      return dayjs(availableTime).get("hour");
+    }
+  );
+
   function handleSelectTime(hour: number) {
     const dateWithTime = dayjs(selectedDate)
       .set("hour", hour)
@@ -81,7 +87,10 @@ export function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
             {availability?.possibleTimes.map((hour) => (
               <TimePickerItem
                 key={hour}
-                disabled={!availability.availableTimes.includes(hour)}
+                disabled={
+                  unavailableTimes?.includes(hour) ||
+                  dayjs(selectedDate).set("hour", hour).isBefore(new Date())
+                }
                 onClick={() => handleSelectTime(hour)}
               >
                 {String(hour).padStart(2, "0")}:00h
