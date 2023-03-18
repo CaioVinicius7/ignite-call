@@ -4,7 +4,7 @@
 
 ## 💭 O que é e qual a ideia do projeto?
 
-Esse é o quinto projeto da trilha de react do ignite de 2022 da [Rocketseat](https://www.rocketseat.com.br/), o projeto se trata de um sistema de agendamentos de horários, onde o usuário pode realizar seu cadastro utilizando o login social com o Google e definir seus horários de disponibilidade e compartilhar seu link personalizado para qualquer pessoa
+Esse é o sexto projeto da trilha de react do ignite de 2022 da [Rocketseat](https://www.rocketseat.com.br/), o projeto se trata de um sistema de agendamentos de horários, onde o usuário pode realizar seu cadastro utilizando o login social com o Google e definir seus horários de disponibilidade, assim gerando um link personalizado que pode ser compartilhado com qualquer pessoa pessoa, e através desse link é possível marcar um horário na agenda do Google do proprietário do link.
 
 <br>
 
